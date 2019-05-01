@@ -22,6 +22,7 @@ import org.springframework.web.client.RestTemplate;
 @EnableEurekaClient
 @EnableZuulProxy
 @SpringBootApplication
+// @EnableRedisHttpSession
 public class ApiGatewayApplication {
 
 	public static void main(String[] args) {
@@ -97,3 +98,16 @@ class Book {
 	
 	
 }
+
+/*
+
+@EnableWebSecurity
+@Configuration
+class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+    }
+}
+
+*/
