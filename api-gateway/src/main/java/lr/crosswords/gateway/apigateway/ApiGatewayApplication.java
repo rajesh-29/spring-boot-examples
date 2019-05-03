@@ -2,6 +2,7 @@ package lr.crosswords.gateway.apigateway;
 
 
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+
 
 @EnableEurekaClient
 @EnableZuulProxy
@@ -49,8 +51,12 @@ class BooksController {
 		this.restTemplate = restTemplate;
 	}
 	
+	private static final Logger LOG = Logger.getLogger(BooksController.class.getName());
+	
 	@RequestMapping(value = "/books")
 	public @ResponseBody List<String> getAllBooks() {
+		
+		LOG.info("APIGateway service /api/books called ... ");
 		
 		ResponseEntity<List<Book>> response = this.restTemplate.exchange(
 				"http://mongodb-service/oldway/books",

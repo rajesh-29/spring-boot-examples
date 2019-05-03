@@ -1,6 +1,8 @@
 package lr.crosswords.mongodbaccess;
 
 
+import java.util.logging.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -43,12 +45,14 @@ public class MongodbaccessApplication {
 	}
 	
 	
+	private static final Logger LOG = Logger.getLogger(MongodbaccessApplication.class.getName());
+	
 	@Autowired
 	private BooksRepository booksRepository;
 	
 	@RequestMapping("/oldway/books")
 	public @ResponseBody Flux<Book> getBooks() {
-		
+		LOG.info("Mongo DB service /oldway/books called ... ");
 		return booksRepository.findAll();
 	}
 	
